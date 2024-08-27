@@ -1,0 +1,73 @@
+﻿@page
+@model PDMasterDetail.Pages.Lisa.IndexModel
+
+@{
+    ViewData["Title"] = "PD Master";
+}
+    <h1>Professional Development Master</h1>
+
+    <p>
+        <a asp-page="Create">Create New</a>
+    </p>
+    <form>
+        <p>
+            Title: <input type="text" asp-for="SearchString" />
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
+    <table class="table">
+        <thead>
+            <tr style="background-color:darkgreen;box-shadow:2px 2px black;">
+                <th>
+                    @Html.DisplayNameFor(model => model.Resources[0].Date)
+                </th>
+                <th>
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.TitleSort">
+                        @Html.DisplayNameFor(model => model.Resources[0].Title)
+                    </a>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Resources[0].Author)
+                </th>
+                <th>
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.TypeSort">
+                        @Html.DisplayNameFor(model => model.Resources[0].Type)
+                    </a>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Resources[0].Description)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Resources)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+            </tr>
+            <tr style="border-bottom:darkgreen 10px groove;">
+                        <td colspan="5">
+                            <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                            <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                            <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                        </td>
+                    </tr>
+
+            }
+        </tbody>
+    </table>
+

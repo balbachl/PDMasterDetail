@@ -1,0 +1,52 @@
+@page
+@model PDMasterDetail.Pages.Jane.IndexModel
+
+@{
+    ViewData["Title"] = "Master Index";
+}
+<div style="background:lemonchiffon;">
+    <h1>Master Index</h1>
+
+    <p>
+        <a asp-page="Create">Create New</a>
+    </p>
+    <table class="table">
+
+        <tbody>
+            @foreach (var item in Model.Resources)
+            {
+                <tr>
+                    <td style="width:30%;">
+                        <div style="font-weight:900;display:inline;">   @Html.DisplayNameFor(model => model.Resources[0].Date):</div>  @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td style="width:70%;">
+                        <div style="font-weight:900;display:inline;">@Html.DisplayNameFor(model => model.Resources[0].Author):</div> @Html.DisplayFor(modelItem => item.Author)
+
+                        <div style="font-weight:900;display:inline;margin-left:20px;">@Html.DisplayNameFor(model => model.Resources[0].Title):</div> @Html.DisplayFor(modelItem => item.Title)
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <div style="font-weight:900;display:inline;">@Html.DisplayNameFor(model => model.Resources[0].Type):</div> @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        <div style="font-weight:900;display:inline;">@Html.DisplayNameFor(model => model.Resources[0].Description):</div> @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="font-weight:900;display:inline;">@Html.DisplayNameFor(model => model.Resources[0].Price):</div> @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+                <tr><td colspan="3" style="background:green;box-shadow:2px 2px black;"></td></tr>
+            }
+        </tbody>
+    </table>
+</div>
